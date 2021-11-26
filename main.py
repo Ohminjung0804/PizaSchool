@@ -20,10 +20,16 @@ class PizaSchoolGUI:
 
         # 로그인 버튼
         self.b1 = tk.Button(self.root, text="로그인")
-        self.b1.config(width=5, height=2)
-        self.b1.config(text="로그인")
-
+       
+        self.b1.place(x=50, y=40)
         self.b1.pack()
+
+        # 회원가입 버튼
+        self.b2 = tk.Button(self.root, text="회원가입")
+        self.b2.config(width=50, height=2)
+        self.b2.config(text="회원가입")
+        self.b2.place(x=50, y=50)
+        self.b2.pack()
 
         self.root.mainloop()
 
