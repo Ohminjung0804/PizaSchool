@@ -19,15 +19,15 @@ class PizaSchoolGUI:
 
 
         # 로그인 버튼
-        loginPhoto = tk.PhotoImage(file="loginbtn.png")
-        self.b1 = tk.Button(self.root, text="로그인",image = loginPhoto)
+        startPhoto = tk.PhotoImage(file="startbtn.png")
+        self.b1 = tk.Button(self.root, text="로그인",image = startPhoto)
        
         self.b1.place(x=490, y=360, width = 300, height = 50)
         # self.b1.pack()
 
         # 회원가입 버튼
-        signupPhoto = tk.PhotoImage(file="signupbtn.png")
-        self.b2 = tk.Button(self.root, text="회원가입", image = signupPhoto)
+        rankPhoto = tk.PhotoImage(file="rankbtn.png")
+        self.b2 = tk.Button(self.root, text="회원가입", image = rankPhoto)
         self.b2.place(x=490, y=430, width = 300, height = 50)
 
 
