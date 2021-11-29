@@ -1,8 +1,9 @@
 import tkinter as tk
+import tkinter.messagebox as msgbox
 
 # import Dino_runGame.main
 import main
-import setting
+import ready
 from PySide2.QtWidgets import QMessageBox
 
 
@@ -16,12 +17,12 @@ class SignUpGUI:
 
 
         #회원가입 배경
-        self.signUpbg = tk.PhotoImage(file="signUpbg.gif")
+        self.signUpbg = tk.PhotoImage(file="image/signUpbg.gif")
         self.signUpLabel = tk.Label(self.signup, image=self.signUpbg)
         self.signUpLabel.place(x=0, y=0)
 
         #아이디 텍스트
-        self.idText = tk.PhotoImage(file="idText.png")
+        self.idText = tk.PhotoImage(file="image/idText.png")
         self.idLabel = tk.Label(self.signup,image=self.idText)
         self.idLabel.place(x=490, y=300, width=60, height=30)
 
@@ -30,7 +31,7 @@ class SignUpGUI:
         self.getId.place(x=490, y=330, width=300, height=50)
 
         # 비밀번호 텍스트
-        self.pwText = tk.PhotoImage(file="pwText.png")
+        self.pwText = tk.PhotoImage(file="image/pwText.png")
         self.pwLabel = tk.Label(self.signup, image=self.pwText)
         self.pwLabel.place(x=490, y=385, width=90, height=30)
 
@@ -39,7 +40,7 @@ class SignUpGUI:
         self.getPw.place(x=490, y=420, width=300, height=50)
 
         # 회원가입 버튼
-        self.signUpPhoto = tk.PhotoImage(file="signupbtn.png")
+        self.signUpPhoto = tk.PhotoImage(file="image/signupbtn.png")
         self.signUpbtn = tk.Button(image=self.signUpPhoto, command=self.setUserMove)
         self.signUpbtn.place(x=490, y=490, width=300, height=50)
 
@@ -48,14 +49,6 @@ class SignUpGUI:
         print('--회원가입--')
         self.id = str(self.getId.get())
         self.pw = str(self.getPw.get())
-
-        if self.id == ' ' and self.id == '':
-            print('아이디는 공백으로 설정할 수 없습니다.')
-            self.setUser()
-
-        if self.pw == ' ' and self.pw == '':
-            print('비밀번호는 공백으로 설정할 수 없습니다.')
-            self.setUser()
 
         self.doubleCheck()
 
@@ -75,8 +68,8 @@ class SignUpGUI:
             data = f.readline()
             print(data)
             if self.id in data:
+                msgbox.showinfo("알림","다른 아이디를 사용하세요.")
                 print('다른 아이디를 사용하세요.')
-                self.setUser()
                 break
 
             if data == '':
@@ -88,6 +81,7 @@ class SignUpGUI:
 
     def signUpEnd(self):
         #tk.messagebox.showinfo("알림창", "Sign up Success!!")
+        msgbox.showinfo("알림", "회원가입 성공")
         print('회원가입 성공')
         move = LoginGUI(self.signup)
 
@@ -105,7 +99,7 @@ class LoginGUI:
 
 
         #로그인 화면 이미지
-        self.loginbg = tk.PhotoImage(file="Loginbg.gif")
+        self.loginbg = tk.PhotoImage(file="image/Loginbg.gif")
         self.loginLabel = tk.Label(self.login,image=self.loginbg)
         self.loginLabel.place(x=0, y=0)
 
@@ -121,23 +115,26 @@ class LoginGUI:
         self.getPw.place(x=490, y=390, width=300, height=50)
 
         #로그인 버튼
-        self.loginPhoto = tk.PhotoImage(file="loginbtn.png")
-        self.loginbtn = tk.Button(image=self.loginPhoto,command=self.setIdMove)
+        self.loginPhoto = tk.PhotoImage(file="image/loginbtn.png")
+        self.loginbtn = tk.Button(image=self.loginPhoto,command=self.setIdmove)
         self.loginbtn.place(x=490, y=450, width=300, height=50)
 
 
         #회원가입 버튼
-        self.signupPhoto = tk.PhotoImage(file="signupbtn.png")
+        self.signupPhoto = tk.PhotoImage(file="image/signupbtn.png")
         self.signupbtn = tk.Button(image=self.signupPhoto,command=self.signupmove)
         self.signupbtn.place(x=490, y=510, width=300, height=50)
 
 
 
-    def setIdMove(self):
+    def setIdmove(self):
         self.setId()
 
     def signupmove(self):
         move = SignUpGUI(self.login)
+
+    def readymove(self):
+        move = ready.Ready(self.login)
 
     def setId(self):
         print('--로그인--')
@@ -147,12 +144,11 @@ class LoginGUI:
         while True:
             data = f.readline()
             if self.id in data and self.pw in data:
-                #tk.messagebox.showinfo("알림창", "Sign up Success!!")
-                # move = Dino_runGame.main.main(self.login)
+                msgbox.showinfo("알림", "로그인 성공")
                 print('로그인 성공')
+                self.readymove()
                 break
 
             if data == '':
-                new = tk.Tk()
-                new.mainloop()
+                msgbox.showinfo("알림","아이디나 비밀번호를 올바르게 입력해주세요.")
                 break
