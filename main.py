@@ -1,38 +1,41 @@
 import tkinter as tk
 
+import controller as controller
 
-class PizaSchoolGUI:
-    def __init__(self):
-        self.init_GUI()
-    def init_GUI(self):
-        self.CANVAS_vertical = 720 #세로
-        self.CANVAS_horizontal = 1280 #가로
+import Login
 
-        self.root = tk.Tk()
-        self.root.title('피자스쿨')
-        self.root.geometry(f'{self.CANVAS_horizontal}x{self.CANVAS_vertical}')
-        self.root.resizable(width=False, height=False)
-        self.canvas = tk.Canvas(self.root, bg='white', width=self.CANVAS_horizontal, height=self.CANVAS_vertical)
-        bg = tk.PhotoImage(file="main.gif")
-        bg_label = tk.Label(image = bg)
-        bg_label.place(x = 0, y = 0)
 
+class MainGUI:
+    def __init__(self,main):
+        self.main = main
+
+        self.bg = tk.PhotoImage(file="mainbg.gif")
+        self.bg_label = tk.Label(image=self.bg)
+        self.bg_label.place(x=0, y=0)
 
         # 로그인 버튼
-        startPhoto = tk.PhotoImage(file="startbtn.png")
-        self.b1 = tk.Button(self.root, text="로그인",image = startPhoto)
-       
-        self.b1.place(x=490, y=360, width = 300, height = 50)
-        # self.b1.pack()
+        self.startPhoto = tk.PhotoImage(file="startbtn.png")
+        self.b1 = tk.Button(self.main, text="로그인", image=self.startPhoto)
+        self.b1.config(command=self.loginmove)
+        self.b1.place(x=490, y=360, width=300, height=50)
 
-        # 회원가입 버튼
-        rankPhoto = tk.PhotoImage(file="rankbtn.png")
-        self.b2 = tk.Button(self.root, text="회원가입", image = rankPhoto)
-        self.b2.place(x=490, y=430, width = 300, height = 50)
+        # 랭킹보기 버튼
+        self.rankPhoto = tk.PhotoImage(file="rankbtn.png")
+        self.b2 = tk.Button(self.main, text="랭킹보기", image=self.rankPhoto)
+        self.b2.place(x=490, y=430, width=300, height=50)
 
-
-        self.root.mainloop()
+    def loginmove(self):
+        move = Login.LoginGUI(self.main)
+    def play(self):
+        self.main.mainloop()
 
 
 if __name__ == '__main__':
-    GUI = PizaSchoolGUI()
+    main = tk.Tk()
+    main.title('피자스쿨')
+    main.geometry(f'1280x720')
+    main.resizable(width=False, height=False)
+    main.canvas = tk.Canvas(main, bg='white', width=1280, height=720)
+
+    GUI = MainGUI(main)
+    GUI.play()
