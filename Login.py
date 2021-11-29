@@ -1,6 +1,7 @@
 import tkinter as tk
 import main
 import setting
+from PySide2.QtWidgets import QMessageBox
 
 
 class SignUpGUI:
@@ -11,11 +12,31 @@ class SignUpGUI:
         self.pw = ''
         self.file_path = "user.txt"
 
+
         #회원가입 배경
-        self.loginbg = tk.PhotoImage(file="Loginbg.gif")
-        self.loginLabel = tk.Label(self.login, image=self.loginbg)
-        self.loginLabel.config(image=self.loginbg)
-        self.loginLabel.place(x=0, y=0)
+        self.signUpbg = tk.PhotoImage(file="signUpbg.gif")
+        self.signUpLabel = tk.Label(self.signup, image=self.signUpbg)
+        self.signUpLabel.place(x=0, y=0)
+
+        #아이디 텍스트
+        self.idText = tk.PhotoImage(file="idText.png")
+        self.idLabel = tk.Label(self.signup,image=self.idText)
+        self.idLabel.place(x=530, y=320, width=30, height=20)
+
+        # 아이디 입력 받기
+        self.getId = tk.Entry(self.signup)
+        self.getId.place(x=490, y=330, width=300, height=50)
+
+        # 비밀번호 입력 받기
+        self.getPw = tk.Entry(self.signup)
+        self.getPw.place(x=490, y=390, width=300, height=50)
+
+        # 회원가입 버튼
+        self.signUpPhoto = tk.PhotoImage(file="signupbtn.png")
+        self.signUpbtn = tk.Button(image=self.signUpPhoto, command=self.signUpEnd)
+        self.signUpbtn.place(x=490, y=450, width=300, height=50)
+
+
 
 
     def setUser(self):
@@ -51,7 +72,9 @@ class SignUpGUI:
 
             if data == '':
                 break
-
+    def signUpEnd(self):
+        tk.messagebox.showinfo("알림창", "Sign up Success!!")
+        move = LoginGUI(self.signup)
 
 
 
@@ -67,10 +90,8 @@ class LoginGUI:
 
 
         #로그인 화면 이미지
-        #self.login.canvas = tk.Canvas(login, bg='white', width=1280, height=720)
         self.loginbg = tk.PhotoImage(file="Loginbg.gif")
         self.loginLabel = tk.Label(self.login,image=self.loginbg)
-        self.loginLabel.config(image=self.loginbg)
         self.loginLabel.place(x=0, y=0)
 
 
@@ -101,7 +122,7 @@ class LoginGUI:
         self.setId()
 
     def signupmove(self):
-        SignUpGUI.setUser(self.login)
+        move = SignUpGUI(self.login)
 
     def setId(self):
         print('--로그인--')
@@ -110,8 +131,8 @@ class LoginGUI:
         f = open('user.txt', 'r', encoding='utf-8')
         while True:
             data = f.readline()
-            print(data)
             if self.id in data and self.pw in data:
+                #tk.messagebox.showinfo("알림창", "Sign up Success!!")
                 move = setting.Setting(self.login)
                 break
 
