@@ -34,3 +34,7 @@ class Rank:
 
     def show(self):
         pass
+
+if __name__ == '__main':
+    rank = Rank()
+    rank.setTime()

@@ -5,28 +5,8 @@ import random
 from pygame import *
 import tkinter as tk
 
-pygame.init()
 
 
-scr_size = (width,height) = (1280,720)
-FPS = 60
-gravity = 0.6
-
-black = (0,0,0)
-white = (255,255,255)
-GROUND = pygame.display.set_mode((1280, 720))
-background_col = pygame.image.load('sprites/bg.gif')
-GROUND.blit(background_col, (0, 0))
-
-high_score = 0
-
-screen = pygame.display.set_mode(scr_size)
-clock = pygame.time.Clock()
-pygame.display.set_caption("Pizza School")
-
-jump_sound = pygame.mixer.Sound('sprites/jump.wav')
-die_sound = pygame.mixer.Sound('sprites/die.wav')
-checkPoint_sound = pygame.mixer.Sound('sprites/checkPoint.wav')
 
 def load_image(
     name,
@@ -90,7 +70,7 @@ def load_sprite_sheet(
 
 def disp_gameOver_msg(retbutton_image,gameover_image):
     retbutton_rect = retbutton_image.get_rect()
-    retbutton_rect.centerx = width / 2
+    retbutton_rect.centerx = main.width / 2
     retbutton_rect.top = height*0.52
 
     gameover_rect = gameover_image.get_rect()
@@ -453,8 +433,45 @@ def gameplay():
     quit()
 
 def main():
+    pygame.init()
+
+    global scr_size
+    global FPS
+    global gravity
+    global black
+    global white
+    global GROUND
+    global background_col
+    global high_score
+    global screen
+    global clock
+    global jump_sound
+    global die_sound
+    global checkPoint_sound
+    global width
+    global height
+    scr_size = (width, height) = (1280, 720)
+    FPS = 60
+    gravity = 0.6
+
+
+    black = (0, 0, 0)
+    white = (255, 255, 255)
+    GROUND = pygame.display.set_mode((1280, 720))
+    background_col = pygame.image.load('sprites/bg.gif')
+    GROUND.blit(background_col, (0, 0))
+
+    high_score = 0
+
+    screen = pygame.display.set_mode(scr_size)
+    clock = pygame.time.Clock()
+    pygame.display.set_caption("Pizza School")
+
+    jump_sound = pygame.mixer.Sound('sprites/jump.wav')
+    die_sound = pygame.mixer.Sound('sprites/die.wav')
+    checkPoint_sound = pygame.mixer.Sound('sprites/checkPoint.wav')
+
     isGameQuit = introscreen()
     if not isGameQuit:
         gameplay()
 
-main()
