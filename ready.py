@@ -15,9 +15,9 @@ class Ready:
         self.readyLabel.place(x=0, y=0)
 
         #게임 시작 버튼
-        from Dino_runGame.main import main as dino_main
+
         self.startPhoto = tk.PhotoImage(file="image/star.png")
-        self.startbtn = tk.Button(self.ready, image=self.startPhoto, command=dino_main)
+        self.startbtn = tk.Button(self.ready, image=self.startPhoto, command=self.startmove)
         self.startbtn.place(x=490, y=360, width=300, height=50)
 
         #로그아웃 버튼
@@ -28,8 +28,9 @@ class Ready:
     def logoutmove(self):
         move = main.MainGUI(self.ready)
 
-    # def startmove(self):
-    #     move =game.main()
+    def startmove(self):
+        from Dino_runGame.main import main as dino_main
+        move =dino_main(self.ready)
 
 
 
