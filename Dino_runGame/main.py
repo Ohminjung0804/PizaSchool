@@ -70,7 +70,7 @@ def load_sprite_sheet(
 
 def disp_gameOver_msg(retbutton_image,gameover_image):
     retbutton_rect = retbutton_image.get_rect()
-    retbutton_rect.centerx = main.width / 2
+    retbutton_rect.centerx = width / 2
     retbutton_rect.top = height*0.52
 
     gameover_rect = gameover_image.get_rect()
@@ -80,6 +80,7 @@ def disp_gameOver_msg(retbutton_image,gameover_image):
     screen.blit(retbutton_image, retbutton_rect)
     screen.blit(gameover_image, gameover_rect)
 
+
 def extractDigits(number):
     if number > -1:
         digits = []
@@ -87,7 +88,6 @@ def extractDigits(number):
         while(number/10 != 0):
             digits.append(number%10)
             number = int(number/10)
-
         digits.append(number%10)
         for i in range(len(digits),5):
             digits.append(0)
@@ -421,7 +421,6 @@ def gameplay():
             highsc.update(high_score)
             if pygame.display.get_surface() != None:
                 disp_gameOver_msg(retbutton_image,gameover_image)
-                #버튼
 
                 if high_score != 0:
                     highsc.draw()
@@ -432,34 +431,26 @@ def gameplay():
     pygame.quit()
     quit()
 
-def main():
+def main(game):
+    game = game
     pygame.init()
+    global scr_size, FPS, gravity, black, white, GROUND, background_col, high_score, screen, clock, jump_sound, die_sound,checkPoint_sound, width, height
 
-    global scr_size
-    global FPS
-    global gravity
-    global black
-    global white
-    global GROUND
-    global background_col
-    global high_score
-    global screen
-    global clock
-    global jump_sound
-    global die_sound
-    global checkPoint_sound
-    global width
-    global height
-    scr_size = (width, height) = (1280, 720)
-    FPS = 60
-    gravity = 0.6
+    gamebg = tk.PhotoImage(file="image/readybg.gif")
+    gameLabel = tk.Label(game, image=gamebg)
+    gameLabel.config(image=gamebg)
+    gameLabel.place(x=0, y=0)
 
-
-    black = (0, 0, 0)
-    white = (255, 255, 255)
-    GROUND = pygame.display.set_mode((1280, 720))
-    background_col = pygame.image.load('sprites/bg.gif')
-    GROUND.blit(background_col, (0, 0))
+    #scr_size = (width, height) = (1280, 720)
+    # FPS = 60
+    # gravity = 0.6
+    #
+    #
+    # black = (0, 0, 0)
+    # white = (255, 255, 255)
+    # GROUND = pygame.display.set_mode((1280, 720))
+    # background_col = pygame.image.load('sprites/bg.gif')
+    # GROUND.blit(background_col, (0, 0))
 
     high_score = 0
 

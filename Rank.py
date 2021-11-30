@@ -1,3 +1,4 @@
+from operator import itemgetter
 from Login import LoginGUI as login
 
 
@@ -17,7 +18,7 @@ class Rank:
                 print(self.user)
                 self.changeScore()
                 break
-            if not self.data:
+            if not self.user:
                 break
 
     #신기록이면 기록 바꿔주기
@@ -47,6 +48,10 @@ class Rank:
                 self.search[i] = self.user
                 print(self.search)
 
+        #점수기준 내림차순
+        self.search = sorted(self.search, key=(lambda x: x['score']), reverse=True)
+        print(self.search)
+
         #파일 전체 지우기
         with open("user.txt", 'r+') as delf:
             delf.truncate(0)
@@ -58,19 +63,16 @@ class Rank:
                 addf.write(str(i)+'\n')
         addf.close()
 
-    #내림차순으로 정렬
-    def sort(self):
-        pass
-
-
-
-
-
-
-
+    #Top3 보여주기
     def show(self):
-        pass
+        for i in range(3):
+            self.info = self.search[i]
+            self.name = self.info['num']
+            self.score = self.info['score']
+            print(f'{i+1} \t {self.name} - {self.score}')
+
 
 if __name__ == '__main__':
     rank = Rank()
     rank.setTime()
+    rank.show()
