@@ -10,7 +10,7 @@ from PySide2.QtWidgets import QMessageBox
 class SignUpGUI:
     def __init__(self,signup):
         self.signup = signup
-        self.user = {"num": '',"pw":'', "score": []}
+        self.user = {"num": '',"pw":'', "score": ''}
         self.id = ''
         self.pw = ''
         self.file_path = "user.txt"
@@ -80,7 +80,6 @@ class SignUpGUI:
         self.setUser()
 
     def signUpEnd(self):
-        #tk.messagebox.showinfo("알림창", "Sign up Success!!")
         msgbox.showinfo("알림", "회원가입 성공")
         print('회원가입 성공')
         move = LoginGUI(self.signup)
@@ -90,8 +89,6 @@ class SignUpGUI:
 class LoginGUI:
     def __init__(self,login):
         self.login = login
-        # self.getid = tk.StringVar
-        # self.getpw = tk.StringVar
         self.id = ''
         self.pw = ''
         self.user = ''

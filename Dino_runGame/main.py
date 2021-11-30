@@ -3,6 +3,7 @@ import sys
 import pygame
 import random
 from pygame import *
+import tkinter as tk
 
 pygame.init()
 
@@ -440,6 +441,8 @@ def gameplay():
             highsc.update(high_score)
             if pygame.display.get_surface() != None:
                 disp_gameOver_msg(retbutton_image,gameover_image)
+                #버튼
+
                 if high_score != 0:
                     highsc.draw()
                     screen.blit(HI_image,HI_rect)
