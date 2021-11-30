@@ -17,12 +17,7 @@ class MainGUI:
         self.startPhoto = tk.PhotoImage(file="image/startbtn.png")
         self.b1 = tk.Button(self.main, image=self.startPhoto)
         self.b1.config(command=self.loginmove)
-        self.b1.place(x=490, y=360, width=300, height=50)
-
-        # 랭킹보기 버튼
-        self.rankPhoto = tk.PhotoImage(file="image/rankbtn.png")
-        self.b2 = tk.Button(self.main, text="랭킹보기", image=self.rankPhoto)
-        self.b2.place(x=490, y=430, width=300, height=50)
+        self.b1.place(x=490, y=380, width=300, height=50)
 
     def loginmove(self):
         move = Login.LoginGUI(self.main)

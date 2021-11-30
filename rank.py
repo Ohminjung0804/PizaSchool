@@ -1,14 +1,23 @@
 from operator import itemgetter
-from Login import LoginGUI as login
+
+import tkinter as tk
+
+# from Login import LoginGUI as login
 
 
 class Rank:
-    def __init__(self):
+    def __init__(self,rank):
+        self.rank = rank
         self.current = '오민정'
         self.oriScore = int()
 
+        # 랭크 배경
+        self.rankbg = tk.PhotoImage(file="image/rankbg.gif")
+        self.rankLabel = tk.Label(self.rank, image=self.rankbg)
+        self.rankLabel.place(x=0, y=0)
 
-    def setTime(self):
+
+    def setScore(self):
         f = open('user.txt', 'r', encoding='utf-8')
         self.newscore = input('시간')
         while True:
@@ -74,5 +83,5 @@ class Rank:
 
 if __name__ == '__main__':
     rank = Rank()
-    rank.setTime()
+    rank.setScore()
     rank.show()
