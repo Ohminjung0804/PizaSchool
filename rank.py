@@ -78,7 +78,7 @@ class Rank:
 
 
         #점수기준 내림차순
-        self.search = sorted(self.search, key=(lambda x: x['score']), reverse=True)
+        self.search = sorted(self.search, key=(lambda x : int(x['score'])), reverse=True)
         print(self.search)
 
 
@@ -106,10 +106,10 @@ class ShowRank():
             data = f2.readline()
 
             if not data: break
-            self.search.append(eval(data)['score'])
+            self.search.append(eval(data))
 
         # 점수기준 내림차순
-        self.search.sort(self.search, key=(lambda x: x['score']), reverse=True)
+        self.search = sorted(self.search, key=(lambda x :int(x['score'])),reverse=True)
         print(self.search)
 
 

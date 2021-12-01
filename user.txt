@@ -1,6 +1,6 @@
 {'num': 'dfdd', 'pw': '454', 'score': '1'}
 {'num': 'dhalswjd', 'pw': '1234', 'score': '0'}
-{'num': '오민정', 'pw': '1234', 'score': '5'}
+{'num': '오민정', 'pw': '1234', 'score': '67'}
 {'num': 'sudoll', 'pw': '5028', 'score': '9'}
-{'num': 'llll', 'pw': 'llll', 'score': '42'}
+{'num': 'llll', 'pw': 'llll', 'score': '0'}
 {'num': 'qq', 'pw': '11', 'score': '0'}
