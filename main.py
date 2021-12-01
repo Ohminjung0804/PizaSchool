@@ -2,7 +2,6 @@ import tkinter as tk
 import tkinter.messagebox as msgbox
 from DataClass import userData
 # import Dino_runGame.main
-import ready
 from PySide2.QtWidgets import QMessageBox
 import controller as controller
 
@@ -202,7 +201,8 @@ class Ready:
     def logoutmove(self):
         move = MainGUI(self.ready)
     def rankmove(self):
-
+        # d = rank.Rank()
+        # d.changeScore()
         move = rank.ShowRank(self.ready)
 
     def startmove(self):

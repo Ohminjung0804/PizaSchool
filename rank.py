@@ -27,14 +27,7 @@ class Rank:
                 break
         print(f'self.user {self.user}')
 
-
-
-
-
     def setScore(self):
-
-
-        # f = open('user.txt', 'r', encoding='utf-8')
         from DataClass import userScore
         self.newscore = int(userScore.SCORE)
         print(f'점수 : {self.newscore}')
@@ -53,6 +46,8 @@ class Rank:
         # 더 큰 점수를 다시 self.user변수에 넣기
         if self.oriScore < self.newscore:
             self.user['score'] = str(self.newscore)
+        else:
+            self.user['score'] = str(self.oriScore)
 
 
         #txt파일 정보 전부 리스트에 넣기
@@ -70,7 +65,6 @@ class Rank:
                 self.search[i] = self.user
                 print(self.search)
 
-
         #파일 전체 지우기
         with open("user.txt", 'r+') as delf:
             delf.truncate(0)
@@ -82,18 +76,14 @@ class Rank:
                 addf.write(str(i)+'\n')
         addf.close()
 
-    def sort(self):
-        f = open('user.txt', 'r', encoding='utf-8')
 
         #점수기준 내림차순
-        self.search = sorted(self.search, key=(lambda x: x['score']), reverse=False)
+        self.search = sorted(self.search, key=(lambda x: x['score']), reverse=True)
         print(self.search)
-        # import operator
-        # self.search = sorted(self.search.items(), key=operator.itemgetter(1))
+
 
     def infosave(self):
         self.setScore()
-        # self.changeScore()
 
 
 class ShowRank():
@@ -116,7 +106,12 @@ class ShowRank():
             data = f2.readline()
 
             if not data: break
-            self.search.append(eval(data))
+            self.search.append(eval(data)['score'])
+
+        # 점수기준 내림차순
+        self.search.sort(self.search, key=(lambda x: x['score']), reverse=True)
+        print(self.search)
+
 
         # 첫번째 이름,점수 라벨
         self.info = self.search[0]

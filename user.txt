@@ -1,5 +1,6 @@
-{'num': 'dfdd', 'pw': '454', 'score': '666'}
-{'num': 'dhalswjd', 'pw': '1234', 'score': '42'}
-{'num': '오민정', 'pw': '1234', 'score': '139'}
-{'num': 'sudoll', 'pw': '5028', 'score': ''}
-{'num': 'llll', 'pw': 'llll', 'score': ''}
+{'num': 'dfdd', 'pw': '454', 'score': '1'}
+{'num': 'dhalswjd', 'pw': '1234', 'score': '0'}
+{'num': '오민정', 'pw': '1234', 'score': '5'}
+{'num': 'sudoll', 'pw': '5028', 'score': '9'}
+{'num': 'llll', 'pw': 'llll', 'score': '42'}
+{'num': 'qq', 'pw': '11', 'score': '0'}
