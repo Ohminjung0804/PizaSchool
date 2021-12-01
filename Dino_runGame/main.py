@@ -213,7 +213,7 @@ class Cloud(pygame.sprite.Sprite):
         if self.rect.right < 0:
             self.kill()
 
-class Scoreboard():
+class Scoreboard:
     def __init__(self,x=-1,y=-1):
         self.score = 0
         self.tempimages,self.temprect = load_sprite_sheet('numbers.png',12,1,11,int(11*6/5),-1)
@@ -238,7 +238,8 @@ class Scoreboard():
             self.image.blit(self.tempimages[s],self.temprect)
             self.temprect.left += self.temprect.width
         self.temprect.left = 0
-
+    def trunScore(self):
+        return self.score
 
 def introscreen():
     temp_pizza = Pizza(44,47)
@@ -431,26 +432,25 @@ def gameplay():
     pygame.quit()
     quit()
 
-def main(game):
-    game = game
+def main():
     pygame.init()
     global scr_size, FPS, gravity, black, white, GROUND, background_col, high_score, screen, clock, jump_sound, die_sound,checkPoint_sound, width, height
 
-    gamebg = tk.PhotoImage(file="image/readybg.gif")
-    gameLabel = tk.Label(game, image=gamebg)
-    gameLabel.config(image=gamebg)
-    gameLabel.place(x=0, y=0)
+    # gamebg = tk.PhotoImage(file="image/readybg.gif")
+    # gameLabel = tk.Label(game, image=gamebg)
+    # gameLabel.config(image=gamebg)
+    # gameLabel.place(x=0, y=0)
 
-    #scr_size = (width, height) = (1280, 720)
-    # FPS = 60
-    # gravity = 0.6
-    #
-    #
-    # black = (0, 0, 0)
-    # white = (255, 255, 255)
-    # GROUND = pygame.display.set_mode((1280, 720))
-    # background_col = pygame.image.load('sprites/bg.gif')
-    # GROUND.blit(background_col, (0, 0))
+    scr_size = (width, height) = (1280, 720)
+    FPS = 60
+    gravity = 0.6
+
+
+    black = (0, 0, 0)
+    white = (255, 255, 255)
+    GROUND = pygame.display.set_mode((1280, 720))
+    background_col = pygame.image.load('sprites/bg.gif')
+    GROUND.blit(background_col, (0, 0))
 
     high_score = 0
 
@@ -465,4 +465,3 @@ def main(game):
     isGameQuit = introscreen()
     if not isGameQuit:
         gameplay()
-

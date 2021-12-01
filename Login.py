@@ -133,6 +133,9 @@ class LoginGUI:
     def readymove(self):
         move = ready.Ready(self.login)
 
+    def trunid(self):
+        return self.id
+
     def setId(self):
         print('--로그인--')
         self.id = str(self.getId.get())

@@ -36,7 +36,7 @@ class Ready:
 
     def startmove(self):
         from Dino_runGame.main import main as dino_main
-        move =dino_main(self.ready)
+        move =dino_main()
 
 
 
