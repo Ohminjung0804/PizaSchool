@@ -4,3 +4,4 @@
 {'num': 'sudoll', 'pw': '5028', 'score': '9'}
 {'num': 'llll', 'pw': 'llll', 'score': '0'}
 {'num': 'qq', 'pw': '11', 'score': '0'}
+{'num': 'qwe', 'pw': '123', 'score': '45'}

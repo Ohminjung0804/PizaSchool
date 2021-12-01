@@ -75,7 +75,7 @@ class SignUpGUI:
     def save(self):
         self.user['id'] = self.id
         self.user['pw'] = self.pw
-        test = {"num":self.id,"pw":self.pw, "score":''}
+        test = {"num":self.id,"pw":self.pw, "score":'0'}
         with open(self.file_path, 'a', encoding='utf-8') as f:
             f.write(str(test))
             f.write('\n')

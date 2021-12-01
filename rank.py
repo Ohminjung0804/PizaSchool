@@ -109,7 +109,7 @@ class ShowRank():
             self.search.append(eval(data))
 
         # 점수기준 내림차순
-        self.search = sorted(self.search, key=(lambda x :int(x['score'])),reverse=True)
+        self.search = sorted(self.search, key=(lambda x : int(x['score'])), reverse=True)
         print(self.search)
 
 
