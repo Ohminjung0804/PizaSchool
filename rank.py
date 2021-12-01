@@ -20,8 +20,6 @@ class Rank:
         self.rankLabel.config(image=self.rankbg)
         self.rankLabel.place(x=0, y=0)
 
-
-
         # 뒤로가기기 버튼
         self.backPhoto = tk.PhotoImage(file="image/backbtn.png")
         self.backLabel = tk.Button(self.rank, image=self.backPhoto, command=self.backmove)
@@ -84,13 +82,34 @@ class Rank:
         addf.close()
 
     #Top3 보여주기
-    def show(self):
-        # for i in range(3):
-        #     self.info = self.search[i]
-        #     self.name = self.info['num']
-        #     self.score = self.info['score']
-        #     print(f'{i+1} \t {self.name} - {self.score}')
+    # def show(self,rank):
+    #     # for i in range(3):
+    #     #     self.info = self.search[i]
+    #     #     self.name = self.info['num']
+    #     #     self.score = self.info['score']
+    #     #     print(f'{i+1} \t {self.name} - {self.score}')
 
+class ShowRank():
+    def __init__(self,rank):
+        self.rank = rank
+        # 랭크 배경
+        self.rankbg = tk.PhotoImage(file="image/rankbg.gif")
+        self.rankLabel = tk.Label(self.rank, image=self.rankbg)
+        self.rankLabel.config(image=self.rankbg)
+        self.rankLabel.place(x=0, y=0)
+
+        # 뒤로가기기 버튼
+        self.backPhoto = tk.PhotoImage(file="image/backbtn.png")
+        self.backLabel = tk.Button(self.rank, image=self.backPhoto, command=self.backmove)
+        self.backLabel.place(x=490, y=540, width=300, height=50)
+
+        self.search = []
+        f2 = open('user.txt', 'r', encoding='utf-8')
+        while True:
+            data = f2.readline()
+
+            if not data: break
+            self.search.append(eval(data))
 
         # 첫번째 이름,점수 라벨
         self.info = self.search[0]
@@ -112,14 +131,13 @@ class Rank:
         self.secondScore.place(x=660, y=350, width=100, height=50)
 
         # 세번째 이름,점수 라벨
-        self.info = self.search[0]
+        self.info = self.search[2]
         self.name = self.info['num']
         self.score = self.info['score']
         self.thirdName = tk.Label(rank, text=self.name)
         self.thirdName.place(x=530, y=435, width=100, height=50)
         self.thirdScore = tk.Label(rank, text=self.score)
         self.thirdScore.place(x=660, y=435, width=100, height=50)
-
     def backmove(self):
         move = ready.Ready(self.rank)
 

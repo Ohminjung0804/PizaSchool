@@ -1,4 +1,4 @@
 {'num': '오민정', 'pw': '1234', 'score': '888'}
 {'num': 'dhalswjd', 'pw': '1234', 'score': '777'}
-{'num': 'dfdd', 'pw': '454', 'score': ''}
+{'num': 'dfdd', 'pw': '454', 'score': '666'}
 {'num': 'sudoll', 'pw': '5028', 'score': ''}

@@ -32,7 +32,7 @@ class Ready:
     def logoutmove(self):
         move = main.MainGUI(self.ready)
     def rankmove(self):
-        move = rank.Rank(self.ready)
+        move = rank.ShowRank(self.ready)
 
     def startmove(self):
         from Dino_runGame.main import main as dino_main
