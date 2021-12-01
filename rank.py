@@ -1,43 +1,36 @@
 from operator import itemgetter
 
-import tkinter as tk
 
-# from Login import LoginGUI as login
-import Login
-import ready
+from main import *
+from Dino_runGame.main import Scoreboard
 
 
-class Rank:
-    def __init__(self,rank):
-        self.rank = rank
-        from Login import LoginGUI as id
-        self.current = '오민정'
+class Rank():
+    def __init__(self):
+        from DataClass import userData
+        datas = userData()
+        self.current = datas.get_user_info()
         self.oriScore = int()
+        self.newscore = int()
+        print(f'현재 사용자: {self.current}')
+        print('갱신 시작')
 
-        # 랭크 배경
-        self.rankbg = tk.PhotoImage(file="image/rankbg.gif")
-        self.rankLabel = tk.Label(self.rank, image=self.rankbg)
-        self.rankLabel.config(image=self.rankbg)
-        self.rankLabel.place(x=0, y=0)
+        f = open('user.txt', 'r', encoding='utf-8')
+        while True:
+            self.user = f.readline()
+            if self.user == '':
+                break
+            self.user = eval(self.user)
 
-        # 뒤로가기기 버튼
-        self.backPhoto = tk.PhotoImage(file="image/backbtn.png")
-        self.backLabel = tk.Button(self.rank, image=self.backPhoto, command=self.backmove)
-        self.backLabel.place(x=490, y=540, width=300, height=50)
 
     def setScore(self):
         f = open('user.txt', 'r', encoding='utf-8')
-        from Dino_runGame import main as dg
-        self.newscore =dg.Scoreboard.trunScore()
-        while True:
-            self.user = eval(f.readline())
+        self.newscore =Scoreboard.trunScore()
+        print(f'점수 : {self.newscore}')
+        if self.user['num'] == self.current:
+            print(f'self.user : {self.user}')
+            self.changeScore()
 
-            if self.user['num'] == self.current:
-                print(self.user)
-                self.changeScore()
-                break
-            if not self.user:
-                break
 
     #신기록이면 기록 바꿔주기
     def changeScore(self):
@@ -81,13 +74,10 @@ class Rank:
                 addf.write(str(i)+'\n')
         addf.close()
 
-    #Top3 보여주기
-    # def show(self,rank):
-    #     # for i in range(3):
-    #     #     self.info = self.search[i]
-    #     #     self.name = self.info['num']
-    #     #     self.score = self.info['score']
-    #     #     print(f'{i+1} \t {self.name} - {self.score}')
+    def infosave(self):
+        self.setScore()
+        # self.changeScore()
+
 
 class ShowRank():
     def __init__(self,rank):
@@ -138,8 +128,9 @@ class ShowRank():
         self.thirdName.place(x=530, y=435, width=100, height=50)
         self.thirdScore = tk.Label(rank, text=self.score)
         self.thirdScore.place(x=660, y=435, width=100, height=50)
+
     def backmove(self):
-        move = ready.Ready(self.rank)
+        move = Ready(self.rank)
 
 
 if __name__ == '__main__':

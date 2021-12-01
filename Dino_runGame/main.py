@@ -3,7 +3,8 @@ import sys
 import pygame
 import random
 from pygame import *
-import tkinter as tk
+# import tkinter as tk
+
 
 
 
@@ -232,14 +233,20 @@ class Scoreboard:
         screen.blit(self.image,self.rect)
 
     def update(self,score):
-        score_digits = extractDigits(score)
+        self.score_digits = extractDigits(score)
         self.image.blit(background_col, (0,0))
-        for s in score_digits:
+        for s in self.score_digits:
             self.image.blit(self.tempimages[s],self.temprect)
             self.temprect.left += self.temprect.width
         self.temprect.left = 0
+
     def trunScore(self):
-        return self.score
+        result = str()
+        for i in self.score_digits:
+            result += str(i)
+        print(result)
+        return int(result)
+
 
 def introscreen():
     temp_pizza = Pizza(44,47)
@@ -268,6 +275,8 @@ def introscreen():
 
         if temp_pizza.isJumping == False:
             gameStart = True
+
+
 
 def gameplay():
     global high_score
@@ -429,6 +438,9 @@ def gameplay():
                 pygame.display.update()
             clock.tick(FPS)
 
+    from rank import Rank
+    rank = Rank()
+    rank.setScore()
     pygame.quit()
     quit()
 
@@ -436,15 +448,9 @@ def main():
     pygame.init()
     global scr_size, FPS, gravity, black, white, GROUND, background_col, high_score, screen, clock, jump_sound, die_sound,checkPoint_sound, width, height
 
-    # gamebg = tk.PhotoImage(file="image/readybg.gif")
-    # gameLabel = tk.Label(game, image=gamebg)
-    # gameLabel.config(image=gamebg)
-    # gameLabel.place(x=0, y=0)
-
     scr_size = (width, height) = (1280, 720)
     FPS = 60
     gravity = 0.6
-
 
     black = (0, 0, 0)
     white = (255, 255, 255)
