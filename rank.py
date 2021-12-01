@@ -1,17 +1,19 @@
+import operator
 from operator import itemgetter
 
-
+import tkinter as tk
 from main import *
-from Dino_runGame.main import Scoreboard
+# from Dino_runGame.main import Scoreboard
 
 
-class Rank():
+class Rank:
     def __init__(self):
         from DataClass import userData
         datas = userData()
-        self.current = datas.get_user_info()
+        self.current = datas.get_user_info() #딕셔너리
         self.oriScore = int()
         self.newscore = int()
+        self.user = {}
         print(f'현재 사용자: {self.current}')
         print('갱신 시작')
 
@@ -21,13 +23,22 @@ class Rank():
             if self.user == '':
                 break
             self.user = eval(self.user)
+            if self.user['num'] == self.current['num']:
+                break
+        print(f'self.user {self.user}')
+
+
+
 
 
     def setScore(self):
-        f = open('user.txt', 'r', encoding='utf-8')
-        self.newscore =Scoreboard.trunScore()
+
+
+        # f = open('user.txt', 'r', encoding='utf-8')
+        from DataClass import userScore
+        self.newscore = int(userScore.SCORE)
         print(f'점수 : {self.newscore}')
-        if self.user['num'] == self.current:
+        if self.user['num'] == self.current['num']:
             print(f'self.user : {self.user}')
             self.changeScore()
 
@@ -42,7 +53,7 @@ class Rank():
         # 더 큰 점수를 다시 self.user변수에 넣기
         if self.oriScore < self.newscore:
             self.user['score'] = str(self.newscore)
-            print(self.user)
+
 
         #txt파일 정보 전부 리스트에 넣기
         self.search = []
@@ -59,9 +70,6 @@ class Rank():
                 self.search[i] = self.user
                 print(self.search)
 
-        #점수기준 내림차순
-        self.search = sorted(self.search, key=(lambda x: x['score']), reverse=True)
-        print(self.search)
 
         #파일 전체 지우기
         with open("user.txt", 'r+') as delf:
@@ -73,6 +81,15 @@ class Rank():
             for i in self.search:
                 addf.write(str(i)+'\n')
         addf.close()
+
+    def sort(self):
+        f = open('user.txt', 'r', encoding='utf-8')
+
+        #점수기준 내림차순
+        self.search = sorted(self.search, key=(lambda x: x['score']), reverse=False)
+        print(self.search)
+        # import operator
+        # self.search = sorted(self.search.items(), key=operator.itemgetter(1))
 
     def infosave(self):
         self.setScore()

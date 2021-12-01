@@ -235,17 +235,21 @@ class Scoreboard:
     def update(self,score):
         self.score_digits = extractDigits(score)
         self.image.blit(background_col, (0,0))
+        result = str()
+        for i in self.score_digits:
+            result += str(i)
+        # print(result)
+        from DataClass import userScore
+        t = userScore()
+        t.set_now_score(result)
+
         for s in self.score_digits:
             self.image.blit(self.tempimages[s],self.temprect)
             self.temprect.left += self.temprect.width
         self.temprect.left = 0
 
     def trunScore(self):
-        result = str()
-        for i in self.score_digits:
-            result += str(i)
-        print(result)
-        return int(result)
+        pass
 
 
 def introscreen():
@@ -438,11 +442,12 @@ def gameplay():
                 pygame.display.update()
             clock.tick(FPS)
 
-    from rank import Rank
-    rank = Rank()
-    rank.setScore()
     pygame.quit()
     quit()
+    from rank import Rank
+    rank = Rank()
+    rank.infosave()
+
 
 def main():
     pygame.init()
@@ -471,3 +476,5 @@ def main():
     isGameQuit = introscreen()
     if not isGameQuit:
         gameplay()
+
+# main()

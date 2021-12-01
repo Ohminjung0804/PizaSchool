@@ -202,6 +202,7 @@ class Ready:
     def logoutmove(self):
         move = MainGUI(self.ready)
     def rankmove(self):
+
         move = rank.ShowRank(self.ready)
 
     def startmove(self):

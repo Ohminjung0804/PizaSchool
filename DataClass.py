@@ -4,8 +4,8 @@ class userData:
         pass
 
     def set_now_user(self, id):
-        self.USER = id
-        print(f'현재 사용자 {self.USER}')
+        userData.USER = id
+        # print(f'현재 사용자 {self.USER}')
 
     def get_now_user(self):
         return userData.USER
@@ -17,10 +17,22 @@ class userData:
             if data == '':
                 break
             data = eval(data)
-            print(data['num'])
+            # print(data['num'])
 
-            if data['num'] == self.USER:
+            if data['num'] == userData.USER:
                 return data
+
+class userScore:
+    SCORE = ''
+    def __init__(self):
+        pass
+    def set_now_score(self, score):
+
+        userScore.SCORE = str(score)
+        # print(f'현재 사용자 {self.USER}')
+
+    def get_now_score(self):
+        return userScore.SCORE
 
 if __name__ == '__main__':
     k = userData()
